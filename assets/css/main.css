@@ -1,0 +1,36 @@
+.container {
+    margin: 0 3rem;
+    padding: 0 3rem;
+    background-color: #023143;
+}
+
+.container-grid {
+    display: grid;
+    grid-template-columns: 26rem auto;
+    background-color: #fff;
+    padding: 2.35rem 1rem;
+}
+
+.grid-modules, .grid-graph {
+    border: .1rem solid #023143;
+    width: 100%;
+}
+
+.grid-graph {
+    display: flex;
+    justify-content: center;
+}
+
+.graph {
+    display: grid;
+    grid-template-columns: repeat(36, 36px);
+    background-color: #fff;
+}
+
+.graph div {
+    border: 1px solid #000;
+    width: 35px;
+    height: 30px;
+    margin: .1rem;
+    background-color: #fff;
+}
