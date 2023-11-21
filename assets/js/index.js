@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log(arrayX);
                 console.log(arrayXAcumulator);
 
-                probability.value = "";
-                attempsNumber.value = "";
-                sucessNumber.value = "";
+                probabilityInput.value = "";
+                attempsNumberInput.value = "";
+                sucessNumberInput.value = "";
             }
         }
     });
