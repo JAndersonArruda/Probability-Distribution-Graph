@@ -15,12 +15,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (probability && attempsNumber && sucessNumber) {
             if (probability >= 0 && probability <= 1 && sucessNumber <= attempsNumber) {
+                const arrayX = [];
+                const arrayXAcumulator = [];
+                let sum = 0;
 
                 arrayData = [probability, attempsNumber, sucessNumber];
 
-                destroyChartsBeforeCreate();
+                if (arrayChart.length > 0) {
+                    arrayChart.forEach(element => {
+                        element.destroy()
+                    });
+                }
+                
+                const factory = (value) => {
+                    if (value == 1 || value == 0) return 1;
+                    return value * factory(value -1);
+                };
 
-                calculateDistribution(probability, attempsNumber, sucessNumber);
+                const calculateDistributionCoeficient = (n, k) => {
+                    let bin = (factory(n)) / ((factory(k)) * (factory(n - k)))
+                    return bin;
+                }
+
+                for (let i = 0; i <= attempsNumber; i ++) {
+                    const coeficiBinomil = calculateDistributionCoeficient(attempsNumber, i);
+                    let probCase = coeficiBinomil * Math.pow(probability, i) * Math.pow(1 - probability, attempsNumber - i);
+                    arrayX.push(probCase);
+            
+                    sum += probCase;
+                    arrayXAcumulator.push(sum);
+                }
+
+                const tilteInfo = document.createElement("h3");
+                const info1 = document.createElement("p");
+                const info2 = document.createElement("p");
+                const info3 = document.createElement("p");
+            
+                tilteInfo.textContent = "Relátorio";
+                info1.textContent = `Probabilidade de sucesso: ${probability}`;
+                info2.textContent = `Número de tentativas: ${attempsNumber}`;
+                info3.textContent = `Chance de obter ${sucessNumber} sucessos: ${arrayX[arrayData[2]].toFixed(5)}`
+            
+                reportDiv.replaceChildren();
+            
+                reportDiv.appendChild(tilteInfo);
+                reportDiv.appendChild(info1);
+                reportDiv.appendChild(info2);
+                reportDiv.appendChild(info3);
+            
+                plotGraph(arrayX, attempsNumber, "Gráfico da distribuição binomial", "pmfChart");
+                plotGraph(arrayXAcumulator, attempsNumber, "Gráfico da distribuição binomial acumulada", "cdfChart");
+                console.log(arrayX);
+                console.log(arrayXAcumulator);
 
                 probability.value = "";
                 attempsNumber.value = "";
@@ -28,53 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-
-    function calculateDistribution(prob, num, sucess) {
-        const arrayX = [];
-        const arrayXAcumulator = [];
-        let sum = 0;
-
-        const factory = (value) => {
-            if (value == 1 || value == 0) return 1;
-            return value * factory(value -1);
-        };
-
-        const calculateDistributionCoeficient = (n, k) => {
-            let bin = (factory(n)) / ((factory(k)) * (factory(n - k)))
-            return bin;
-        }
-
-        for (let i = 0; i <= num; i ++) {
-            const coeficiBinomil = calculateDistributionCoeficient(num, i);
-            let probCase = coeficiBinomil * Math.pow(prob, i) * Math.pow(1 - prob, num - i);
-            arrayX.push(probCase);
-
-            sum += probCase;
-            arrayXAcumulator.push(sum);
-        }
-
-        const tilteInfo = document.createElement("h3");
-        const info1 = document.createElement("p");
-        const info2 = document.createElement("p");
-        const info3 = document.createElement("p");
-
-        tilteInfo.textContent = "Relátorio";
-        info1.textContent = `Probabilidade de sucesso: ${prob}`;
-        info2.textContent = `Número de tentativas: ${num}`;
-        info3.textContent = `Chance de obter ${sucess} sucessos: ${arrayX[arrayData[2]].toFixed(5)}`
-
-        reportDiv.replaceChildren();
-
-        reportDiv.appendChild(tilteInfo);
-        reportDiv.appendChild(info1);
-        reportDiv.appendChild(info2);
-        reportDiv.appendChild(info3);
-
-        plotGraph(arrayX, num, "Gráfico da distribuição binomial", "pmfChart");
-        plotGraph(arrayXAcumulator, num, "Gráfico da distribuição binomial acumulada", "cdfChart");
-        console.log(arrayX);
-        console.log(arrayXAcumulator);
-    }
 
     function plotGraph(xValues, num, title, id) {
         const ctx = document.getElementById(id).getContext('2d');
@@ -109,13 +108,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }));
-    }
-
-    function destroyChartsBeforeCreate() {
-        if (arrayChart.length > 0) {
-            arrayChart.forEach(element => {
-                element.destroy()
-            });
-        }
     }
 });
