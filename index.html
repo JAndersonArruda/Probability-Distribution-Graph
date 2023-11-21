@@ -3,11 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gráfico de Distribuição de Probabilidade</title>
+    <title>Distribuição Binomial</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/footer.css">
 </head>
 <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <header>
+        <nav class="nav">
+            <div class="container-nav-title">
+                <h2>Gráfico de Distribuição de Probabilidade</h2>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="container-grid">
+            <div class="container-form">
+                <div class="container-tille-form">
+                    <h2>Distribuição binomial:</h2>
+                </div>
+    
+                <form action="">
+                    <div class="input-section">
+                        <div class="iten-form">
+                            <input type="number" id="probability" placeholder="Probabilidade, ex: 0.6">
+                        </div>
+                        <div class="iten-form">
+                            <input type="number" id="attempsNumber" placeholder="Número de tentativas, ex: 5">
+                        </div>
+                        <div class="iten-form">
+                            <input  type="number" id="sucessNumber" placeholder="Número de sucessos: ex: 2">
+                        </div>
+                    </div>
+                    <div class="container-button">
+                        <button id="inputButton" type="button" class="button">Calcular</button>
+                    </div>
+                </form>
+
+                <div id="valuesId">
+                    
+                </div>
+            </div>
+            
+            <div class="container-graph">
+                <div>
+                    <div class="graph">
+                        <canvas id="pmfChart"></canvas>
+                        <canvas id="cdfChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Copyright &copy; 2023 - Gráfico de Distribuição de Probabilidade</p>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="./assets/js/index.js" ></script>
 </body>
 </html>

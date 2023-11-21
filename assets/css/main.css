@@ -1,0 +1,62 @@
+.container {
+    margin: 0 3rem;
+    padding: 0 3rem;
+    background-color: #023143;
+}
+
+.container-grid {
+    display: grid;
+    grid-template-columns: 26rem auto;
+    padding: 2.35rem 1rem 2.35rem 0;
+}
+
+.container-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;  
+}
+
+.iten-form {
+    margin: .5rem;
+}
+.iten-form input {
+    font-size: 18px;
+    padding: .5rem;
+}
+
+.container-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.button {
+    padding: 1rem 2rem;
+    background-color: #085370;
+    color: #fff;
+    border: 0;
+    border-radius: 3rem;
+    font-size: 18px;
+}
+
+.container-graph {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.graph {
+    display: flex;
+    flex-direction: column;
+    border: .1rem solid #023143;
+    width: auto;
+}
+
