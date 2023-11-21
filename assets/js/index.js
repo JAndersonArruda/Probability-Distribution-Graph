@@ -35,16 +35,21 @@ function calculateDistribution(p, n, x) {
         vectorXAcumulated.push(sum);
     }
 
-    const valuesId = document.querySelector("#valuesId");
+    const report = document.querySelector("#report");
     const tilteInfo = document.createElement("h3");
     const info1 = document.createElement("p");
     const info2 = document.createElement("p");
     const info3 = document.createElement("p");
 
+    tilteInfo.textContent = "Relátorio";
+    info1.textContent = `Probabilidade de sucesso: ${p}`;
+    info2.textContent = `Número de tentativas: ${n}`;
+    info3.textContent = `Chance de obter ${x} sucessos: ${vectorX[values[2]].toFixed(5)}`
 
-
-
-    valuesId.innerHTML = `Probabilidade de sucesso: ${p} <br> Número de tentativas: ${n} <br> Chance de obter ${x} sucessos: ${vectorX[values[2]].toFixed(5)}`;
+    report.appendChild(tilteInfo);
+    report.appendChild(info1);
+    report.appendChild(info2);
+    report.appendChild(info3);
 
     plotGraph(vectorX, "Gráfico da distribuição binomial", "pmfChart");
     plotGraph(vectorXAcumulated, "Gráfico da distribuição binomial acumulada", "cdfChart");
