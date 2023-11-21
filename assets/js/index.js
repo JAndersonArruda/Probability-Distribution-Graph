@@ -9,12 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let arrayChart = [];
 
     generateButton.addEventListener("click", () => {
-        const probability = probabilityInput.value;
-        const attempsNumber = attempsNumberInput.value;
-        const sucessNumber = sucessNumberInput.value;
+        const probability = parseFloat(probabilityInput.value);
+        const attempsNumber = parseInt(attempsNumberInput.value);
+        const sucessNumber = parseInt(sucessNumberInput.value);
 
         if (probability && attempsNumber && sucessNumber) {
-            if (probability >= 0 && probability <= 1 && sucessNumber <= attempsNumber) {
+            if (probability >= 0 && probability <= 1 && attempsNumber >= sucessNumber) {
                 const arrayX = [];
                 const arrayXAcumulator = [];
                 let sum = 0;
